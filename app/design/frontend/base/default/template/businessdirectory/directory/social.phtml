@@ -1,0 +1,29 @@
+<?php $_listing = $this->getListing(); ?>
+<?php if(($_listing->getFacebookPage() || $_listing->getTwitterPage() || $_listing->getGooglePlusPage()) && $_listing->getIsFeatured()): ?>
+  <div class="directory-data directory-social-wrapper <?php echo $this->getElementClass(); ?>">
+	<?php if($_listing->getFacebookPage()): ?>
+	  <div class="directory-social">
+		<a href="#" rel="nofollow" onClick="setLocation('<?php echo $this->getUrl('*/*/redirect',array('listing_id' => $_listing->getListingId(),'link' => 'facebook_page')) ?>');return false;" title="Like <?php echo $_listing->getListingName() ?> on Facebook!">
+		  <div class="directory-icon directory-facebook"></div>Like Them On Facebook!
+		</a>              
+	  </div>
+	<?php endif; ?>
+	
+	<?php if($_listing->getTwitterPage()): ?>
+	  <div class="directory-social">
+		<a href="#" rel="nofollow" onClick="setLocation('<?php echo $this->getUrl('*/*/redirect',array('listing_id' => $_listing->getListingId(),'link' => 'twitter_page')) ?>');return false;" title="Follow <?php echo $_listing->getListingName() ?> on Twitter!">
+		  <div class="directory-icon directory-twitter"></div>Follow Them On Twitter!
+		</a>
+	  </div>
+	<?php endif; ?>
+	
+	<?php if($_listing->getGooglePlusPage()): ?>
+	  <div class="directory-social">
+		<a href="#" rel="nofollow" onClick="setLocation('<?php echo $this->getUrl('*/*/redirect',array('listing_id' => $_listing->getListingId(),'link' => 'google_plus_page')) ?>');return false;" title="Circle <?php echo $_listing->getListingName() ?> on Google+!">
+		  <div class="directory-icon directory-googleplus"></div>Circle Them On Google+!
+		</a>
+	  </div>
+	<?php endif; ?>
+	<div class="clear"></div> 
+  </div>
+<?php endif; ?>  

@@ -1,0 +1,29 @@
+<?php if($this->canDisplayFeaturedListings()): ?>
+<?php if($this->getItems()->getSize()): ?>
+<?php $_helper = Mage::helper('businessdirectory'); ?>
+
+<div class="block block-featured <?php echo $this->getElementClass(); ?>">
+  <div class="block-title"> <strong><span><?php echo $this->__('Featured Listings') ?></span></strong> </div>
+  <div class="block-content">
+    <ol class="mini-list" id="block-featured">
+      <?php foreach($this->getItems() as $_listing): ?>
+      <li class="listing">
+        <?php if($_listing->getListingImage()): ?>
+        <div class="directory-image"> <a href="<?php echo $this->helper('businessdirectory/listing')->getUrl($_listing->getListingId()); ?>" title="<?php echo $_listing->getListingName() ?>"> <img src="<?php echo $_helper->getImageUrl($_listing->getListingImage()) ?>" height="50" width="50" alt="<?php echo $_listing->getListingName() ?>" title="<?php echo $_listing->getListingName() ?>" /> </a> </div>
+        <?php endif; ?>
+        <div class="directory-data">
+          <p class="listing-title"><a href="<?php echo $this->helper('businessdirectory/listing')->getUrl($_listing->getListingId()); ?>" title="<?php echo $_listing->getListingName() ?>"><?php echo $_listing->getListingName() ?></a></p>
+          <?php echo $_helper->renderAddress($_listing,'short',$this->getShowCountry()) ?>
+          <?php if($_listing->getListingPhone()): ?>
+          <p><?php echo '<strong>Phone:</strong> '.$_listing->getListingPhone(); ?></p>
+          <?php endif; ?>
+        </div>
+        <div class="clear"></div>
+      </li>
+      <?php endforeach ?>
+    </ol>
+    <script type="text/javascript">decorateList('block-featured', 'none-recursive')</script> 
+  </div>
+</div>
+<?php endif ?>
+<?php endif ?>

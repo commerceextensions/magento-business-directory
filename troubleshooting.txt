@@ -1,0 +1,2 @@
+I am attempting to upload a large CSV full of listings to the directory, but I keep getting redirected to the dashboard. What should I do?
+This is happening because post_max_size and/or upload_max_size settings on your server need to be adjusted to fit your csv, or you need to break your csv into multiple files. These settings are located in your htaccess or php.ini file, depending on your server's setup.

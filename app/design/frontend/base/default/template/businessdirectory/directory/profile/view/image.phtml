@@ -1,0 +1,8 @@
+<?php $_listing = $this->getListing(); ?>
+<?php $_helper  = $this->helper('businessdirectory'); ?>
+<?php if($_listing->getListingImage() && $_listing->getIsFeatured()): ?>
+  <div class="directory-image block <?php echo $this->getElementClass(); ?>"> 
+    <a href="#" rel="nofollow" onClick="setLocation('<?php echo $this->getUrl('*/*/redirect',array('listing_id' => $_listing->getListingId(),'link' => 'listing_website')) ?>');return false;" title="Visit the <?php echo $_listing->getListingName() ?> website!"><img src="<?php echo $_helper->getImageUrl($_listing->getListingImage()) ?>" height="<?php echo $this->getImageHeight() ?>" width="<?php echo $this->getImageWidth() ?>" alt="<?php echo $_listing->getListingName() ?>" title="<?php echo $_listing->getListingName() ?>" <?php echo $this->addSchemaTag('img'); ?> /> 
+    </a> 
+  </div>
+<?php endif; ?>

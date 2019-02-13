@@ -1,0 +1,133 @@
+<div class="column">
+  <div class="ce_block_notice" style="width:98% !important;">
+    <h3>Ok, What Do I Do Here?</h3>
+    <p>Remember, this whole directory was built for the purpose of enhancing SEO. The fields below are designed to help prevent duplicate content across your directory list pages and also give you the freedom to plug in some variable fields based on your needs. The fields below are for the purpose of allowing you to display different values based on either the filter selections that a user has already made or filter choices that are currently displayed for your user to choose from.</p>
+    <?php $presetFieldTags = '[['.implode(']], [[',array_keys($this->getStaticFilterModel()->ALLOWABLE_FILTERS)).']], [[store_name]]'; ?>
+    <p>Preset Tag(s) for these fields: <strong><?php echo $presetFieldTags; ?></strong>. Please note that if you select a tag out of sequence, it will not work, so check your setup after you apply it. We can help you create additional variables to use for a fee. E-mail Shawn at <a href="mailto:admin@lightsnholsters.com" target="_blank">admin@lightsnholsters.com</a> with your request in order to receive a quote. We are quick to reply.</p>
+    <p>Additionally, even though it would not normally make sense to do so, you can reorder the sequence of the filters by grabbing the gray header with your mouse and then dragging and dropping them into the order you want. By default, these filters are setup in the most logical order. You can also active / deactivate the filters by checking or unchecking the checkboxes next to the filter names.</p>
+  </div>
+  <?php foreach($this->getFilters() as $field => $label): ?>
+  <div id="staticfilter_<?php echo $field; ?>_wrapper" class="portlet staticfilter_wrapper">
+    <input type="hidden" name="staticfilter[<?php echo $field; ?>][directory_id]" id="staticfilter_<?php echo $field; ?>_directoryid" value="<?php echo $this->getDirectoryId(); ?>" />
+    <input type="hidden" name="staticfilter[<?php echo $field; ?>][filter_field]" id="staticfilter_<?php echo $field; ?>_field" value="<?php echo $field; ?>" />
+    <input type="hidden" name="staticfilter[<?php echo $field; ?>][sort_order]" id="staticfilter_<?php echo $field; ?>_order" value="<?php echo $this->fieldValueHelper($field,'sort_order'); ?>" />
+    <div class="portlet-header">
+      <input type="checkbox" name="staticfilter[<?php echo $field; ?>][is_active]" id="staticfilter_active_<?php echo $field; ?>" class="staticfilter_active_toggle" value="<?php echo $active = $this->fieldValueHelper($field,'is_active'); ?>" <?php echo $active == 1 ? 'checked="checked"' : null; ?>/>
+      <label for="staticfilter_active_<?php echo $field; ?>"><?php echo $label; ?></label>
+    </div>
+    <div class="portlet-content">
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="label"><label for="staticfilter[<?php echo $field; ?>][title_tag]">Title Tag Configuration</label></td>
+          <td class="value"><input name="staticfilter[<?php echo $field; ?>][title_tag]" id="staticfilter_<?php echo $field; ?>_titletag" title="Title Tag Configuration" type="text" class=" input-text" value="<?php echo $this->fieldValueHelper($field,'title_tag'); ?>">
+            <p class="note">Configure the webpage's Title Tag attribute to be applied once a <strong><?php echo $label; ?></strong> has been selected.</p></td>
+        </tr>
+        <tr>
+          <td class="label"><label for="staticfilter[<?php echo $field; ?>][h1_tag]">H1 Tag Configuration</label></td>
+          <td class="value"><input name="staticfilter[<?php echo $field; ?>][h1_tag]" id="staticfilter_<?php echo $field; ?>_h1tag" title="H1 Tag Configuration" type="text" class=" input-text" value="<?php echo $this->fieldValueHelper($field,'h1_tag'); ?>">
+            <p class="note">Configure the webpage's H1 Tag attribute to be applied once a <strong><?php echo $label; ?></strong> has been selected.</p></td>
+        </tr>
+        <tr>
+          <td class="label"><label for="staticfilter[<?php echo $field; ?>][filter_label]">Filter List Label</label></td>
+          <td class="value"><input name="staticfilter[<?php echo $field; ?>][filter_label]" id="staticfilter_<?php echo $field; ?>_filterlabel" title="Filter List Label" type="text" class=" input-text" value="<?php echo $this->fieldValueHelper($field,'filter_label'); ?>">
+            <p class="note">Configure the Filter List Label to be applied before a <strong><?php echo $label; ?></strong> has been selected.</p></td>
+        </tr>
+        <tr>
+          <td class="label"><label for="staticfilter[<?php echo $field; ?>][filter_link_title]">Filter Link Title Tag</label></td>
+          <td class="value"><input name="staticfilter[<?php echo $field; ?>][filter_link_title]" id="staticfilter_<?php echo $field; ?>_filterlink_title" title="Filter Link Title Tag" type="text" class=" input-text" value="<?php echo $this->fieldValueHelper($field,'filter_link_title'); ?>">
+            <p class="note">Configure the Filter Link Title Tag attribute to be applied to the filter option list when the <strong><?php echo $label; ?></strong> filter list is displayed. This is for the actual text link that users click on.</p></td>
+        </tr>
+        <tr>
+          <?php $numcols = $this->fieldValueHelper($field,'num_cols'); ?>
+          <?php $numcols = is_null($numcols) || $numcols == 0 ? 5 : $numcols; ?>
+          <td class="label"><label for="staticfilter[<?php echo $field; ?>][num_cols]">Number of Filter Columns</label></td>
+          <td class="value"><input name="staticfilter[<?php echo $field; ?>][num_cols]" id="staticfilter_<?php echo $field; ?>_numcols" title="Number of Filter Columns" type="text" class="input-text" value="<?php echo $numcols; ?>">
+            <p class="note">Configure the number of columns to show the filters in when the <strong><?php echo $label; ?></strong> filter list is displayed.</p></td>
+        </tr>
+        <tr>
+          <?php $numrows = $this->fieldValueHelper($field,'num_rows'); ?>
+          <?php $numrows = is_null($numrows) || $numrows == 0 ? 12 : $numrows; ?>        
+          <td class="label"><label for="staticfilter[<?php echo $field; ?>][num_rows]">Max Number of Filter Rows</label></td>
+          <td class="value"><input name="staticfilter[<?php echo $field; ?>][num_rows]" id="staticfilter_<?php echo $field; ?>_numrows" title="Max Number of Filter Rows" type="text" class="input-text" value="<?php echo $numrows; ?>">
+            <p class="note">Configure the maximum number of rows to show the filters in when the <strong><?php echo $label; ?></strong> filter list is displayed.</p></td>
+        </tr>
+        <tr>
+          <td class="label"><label for="staticfilter[<?php echo $field; ?>][meta_description]">Filter Meta Description</label></td>
+          <td class="value"><textarea name="staticfilter[<?php echo $field; ?>][meta_description]" id="staticfilter_<?php echo $field; ?>_meta_description" title="Filter Meta Description" type="text" class="input-text textarea validate-length maximum-length-255 staticfilter_meta_description" rows="1" cols="15" onkeyup="checkMaxLength(this, 255)"><?php echo $this->fieldValueHelper($field,'meta_description'); ?></textarea>
+            <p class="note">Configure the Meta Description to use once a <strong><?php echo $label; ?></strong> has been selected. Maximum 255 chars.</p></td>
+        </tr>
+        <tr>
+          <td class="label"><label for="staticfilter[<?php echo $field; ?>][meta_keywords]">Filter Meta Keywords</label></td>
+          <td class="value"><textarea name="staticfilter[<?php echo $field; ?>][meta_keywords]" id="staticfilter_<?php echo $field; ?>_meta_keywords" title="Filter Meta Keywords" type="text" class="input-text textarea validate-length maximum-length-255 staticfilter_meta_keywords" rows="1" cols="15" onkeyup="checkMaxLength(this, 255)"><?php echo $this->fieldValueHelper($field,'meta_keywords'); ?></textarea>
+            <p class="note">Configure the Meta Keywords to use once a <strong><?php echo $label; ?></strong> has been selected. Maximum 255 chars.</p></td>
+        </tr>
+        <tr>
+          <td class="label"><label for="staticfilter[<?php echo $field; ?>][content]">Filter Text Content</label></td>
+          <td class="value"><textarea name="staticfilter[<?php echo $field; ?>][content]" id="staticfilter_<?php echo $field; ?>_content" title="Filter Text Content" type="text" class="input-text textarea staticfilter_content" rows="1" cols="15" onkeyup="checkMaxLength(this, 255)"><?php echo $this->fieldValueHelper($field,'content'); ?></textarea>
+            <p class="note">Configure the On-Page Textual Content to use once a <strong><?php echo $label; ?></strong> has been selected.</p></td>
+        </tr>
+        <tr>
+          <td colspan="2"><br />
+            <p class="note">The maximum number of filters that will be shown is: <strong><?php echo (int)$numcols*(int)$numrows; ?></strong></p></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <?php endforeach; ?>
+</div>
+<script>  
+jQuery(document).ready(function(){  
+
+  jQuery(function() {
+    jQuery(".column").sortable({
+      connectWith : ".column",
+      handle      : ".portlet-header",
+      cancel      : ".portlet-toggle",
+      placeholder : "portlet-placeholder ui-corner-all",
+        start: function(event, ui) {
+            var start_pos = ui.item.index();			
+            ui.item.data('start_pos', start_pos);
+        },
+        update: function(event, ui) {
+            var start_pos = ui.item.data('start_pos');
+            var end_pos = $(ui.item).index();
+			setOrderOnSortables();					
+        }	  
+    });
+ 
+    jQuery(".portlet")
+      .addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
+      .find(".portlet-header")
+	  .addClass("ui-widget-header ui-corner-all")
+	  .prepend( "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
+ 
+    jQuery(".portlet-toggle").click(function() {
+      var icon = jQuery(this);
+      icon.toggleClass("ui-icon-minusthick ui-icon-plusthick");
+      icon.closest(".portlet").find(".portlet-content").toggle();
+    });		
+  });
+  
+  // enable or disable a filter / set checkbox
+  jQuery('.staticfilter_active_toggle').on('change click',function(){	  
+	var isChecked  = jQuery("#"+this.id+':checked').val() ? true : false;	  
+	isChecked === true ? jQuery(this).val(1) : jQuery(this).val(0);	  
+  });	    
+    
+  // reorders the filters when moving them so that sort order sets in db
+  function setOrderOnSortables(){
+  	jQuery('.staticfilter_wrapper').each(function(key,value){
+		var sort_id = "#"+value.id.replace('_wrapper','_order');
+		jQuery(sort_id).val(key+1);
+	});	  
+  }   
+});
+
+  function checkMaxLength(Object, MaxLen)
+  {
+	if (Object.value.length > MaxLen-1) {
+		Object.value = Object.value.substr(0, MaxLen);
+	}
+	return 1;
+  }	 
+</script> 

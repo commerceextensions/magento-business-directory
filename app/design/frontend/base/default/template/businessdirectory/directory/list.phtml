@@ -1,0 +1,118 @@
+<?php $_directory = $this->getDirectory(); ?>
+<?php $_helper    = $this->helper('businessdirectory'); ?>
+<?php $collection = $this->getCollection(); ?>
+<?php echo $this->getPagerHtml(); ?>
+<?php if($collection->getSize()): ?>
+<table class="data-table <?php echo $this->getElementClass(); ?>" id="directory-listing-table">
+  <col width="1" />
+  <tbody>
+    <?php foreach ($collection as $_listing): ?>
+    <tr id="item-<?php echo $_listing->getListingId(); ?>" class="listing-row" <?php echo $this->getParentSchemaTag(); ?>>
+      <?php $class = $_listing->getIsFeatured() ? 'featured-listing' : null; ?>
+      <td class="<?php echo $class; ?>">              
+        <div class="directory-data">
+          <div class="listing-title">
+            <h2><a href="<?php echo $this->helper('businessdirectory/listing')->getUrl($_listing->getListingId()); ?>" title="<?php echo $_listing->getListingName() ?>" <?php echo $this->addSchemaTag('name'); ?>><?php echo $_listing->getListingName() ?><span style="white-space:nowrap;"><?php if($_listing->getIsFeatured()): ?> | <?php echo $this->__($_directory->getFeaturedListingButtonText()) ?><?php endif; ?></span></a></h2>               
+            <?php echo $this->getButtonHtml($_listing); ?>
+          </div>
+          
+          <div class="data-group">
+			<?php echo $_helper->renderAddress($_listing,null,$this->getShowCountry(),$this->getUseSchemaTags()) ?>
+            
+            <?php if($_listing->getListingContactName()): ?>
+              <p><?php echo '<strong>Contact:</strong> '.$this->wrapWithSchemaTag($_listing->getListingContactName(),'employee') ?></p>
+            <?php endif; ?>
+            
+            <?php if($_listing->getListingPhone() && $_listing->getListingFax()): ?>
+              <p><?php echo '<strong>Phone:</strong> '.$this->wrapWithSchemaTag($_listing->getListingPhone(),'phone').' | <strong>Fax:</strong> '.$this->wrapWithSchemaTag($_listing->getListingFax(),'fax'); ?></p>
+            <?php else: ?>
+              <?php if($_listing->getListingPhone()): ?>
+                <p><?php echo '<strong>Phone:</strong> '.$this->wrapWithSchemaTag($_listing->getListingPhone(),'phone'); ?></p>
+              <?php endif; ?>            
+              <?php if($_listing->getListingFax()): ?>
+                <p><?php echo '<strong>Fax:</strong> '.$this->wrapWithSchemaTag($_listing->getListingFax(),'fax'); ?></p>
+              <?php endif; ?>            
+            <?php endif; ?>
+            
+            <?php if($_listing->getListingWebsite() && $_listing->getListingEmail()): ?>
+              <p><a href="#" rel="nofollow" onClick="setLocation('<?php echo $this->getUrl('*/*/redirect',array('listing_id' => $_listing->getListingId(),'link' => 'listing_website')) ?>');return false;" title="Visit the <?php echo $_listing->getListingName() ?> website!"><?php echo $this->wrapWithSchemaTag($_helper->renderUrl($_listing->getListingWebsite()),'url') ?></a> | <?php echo $this->wrapWithSchemaTag($_listing->getListingEmail(),'email') ?></p>
+            <?php else: ?>
+              <?php if($_listing->getListingWebsite()): ?>
+                <p><a href="#" rel="nofollow" onClick="setLocation('<?php echo $this->getUrl('*/*/redirect',array('listing_id' => $_listing->getListingId(),'link' => 'listing_website')) ?>');return false;" title="Visit the <?php echo $_listing->getListingName() ?> website!"><?php echo $this->wrapWithSchemaTag($_helper->renderUrl($_listing->getListingWebsite()),'url') ?></a></p>
+              <?php endif; ?>            
+              <?php if($_listing->getListingEmail()): ?>
+            <p><?php echo $this->wrapWithSchemaTag($_listing->getListingEmail(),'email') ?></p>
+              <?php endif; ?>            
+            <?php endif; ?>		 
+  
+            <?php if($_listing->getDistance() && $_listing->getLatitude() != 0 && $_listing->getLongitude() != 0): ?>
+              <?php if($this->getUseSchemaTags()): ?>
+                <span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+				  <?php echo $this->addSchemaTagMeta($_listing->getLatitude(),'latitude'); ?>
+                  <?php echo $this->addSchemaTagMeta($_listing->getLongitude(),'longitude'); ?>
+                </span>
+              <?php endif; ?>
+              <?php if($_directory->getDistanceUnits() == 'miles'): ?>
+                <p><?php echo $_helper->shortenDecimal($_listing->getDistance()); ?> Miles</p>   
+              <?php else: ?>            
+                <p><?php echo $_helper->shortenDecimal($_listing->getDistance()); ?> Kilometers</p>
+              <?php endif; ?>
+            <?php endif; ?>
+          </div>
+		  <?php if($_listing->getListingImage() && $_listing->getIsFeatured()): ?>      
+            <div class="directory-image">         
+              <a href="<?php echo $this->helper('businessdirectory/listing')->getUrl($_listing->getListingId()); ?>" title="<?php echo $_listing->getListingName() ?>">
+                <img src="<?php echo $_helper->getImageUrl($_listing->getListingImage()) ?>" height="<?php echo $this->getImageHeight() ?>" width="<?php echo $this->getImageWidth() ?>" alt="<?php echo $_listing->getListingName() ?>" title="<?php echo $_listing->getListingName() ?>" <?php echo $this->addSchemaTag('img'); ?> />
+              </a>
+            </div>
+          <?php endif; ?>            
+        </div>              
+
+        <div class="directory-data">
+          <?php echo $this->getSocialHtml($_listing); ?> 
+          <?php if($_listing->getListingComments()): ?>
+            <?php echo $_listing->getListingComments() ?><br>
+          <?php endif; ?>          
+        </div>
+        		
+      </td>
+    </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>
+<script type="text/javascript">decorateTable('directory-listing-table');</script> 
+<?php echo $this->getPagerHtml(); ?>
+<?php else: ?>
+<p><?php echo $this->__('There are no listings to display.'); ?></p>
+<?php endif ?>
+<?php /*?><script>
+  IF I DECIDE TO LOAD THE CLAIM BUTTON VIA AJAX, I ONLY NEED TO UNCOMMENT THIS CODE
+  $j = jQuery;
+  $j(document).ready(function(){
+	var data = new Object();
+	data.directoryId = <?php echo $this->getDirectory()->getDirectoryId(); ?>;
+	$j('.listing-row').each(function () {
+	  data[this.id] = this.id;
+	});
+	var data = $j.param(data);
+	$j.ajax({  
+		  type       : 'POST',
+		  url        : '<?php echo $this->getUrl("businessdirectory/listing/button/"); ?>',
+		  data       : data,
+		  dataType   : 'json',
+		  async      : true,
+		  success    : function(response) { 
+			$j.each(response, function(buttonId,buttonHtml) {
+			  if($j(buttonId).length == 0) {
+				var rowId = buttonId.replace("button","item");
+				$j(rowId+" h2").insertAfter(buttonHtml);
+			  } else {		  
+			    $j(buttonId).replaceWith(buttonHtml);
+			  }
+			});		                                             
+		  }
+	}); 	
+		  
+  });
+</script>
+<?php */?>

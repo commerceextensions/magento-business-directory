@@ -1,0 +1,76 @@
+<?php $directoryId = $this->getDirectory()->getDirectoryId(); ?>
+<script>
+$j = jQuery;
+$j(document).ready(function(){
+	
+  var obj = {
+	  nameAutocomplete: function(nameInput,locationInput){
+		var postData = {}
+		$j(nameInput).on("keyup", function(event) {
+		    postData.term = this.value;
+	
+		  if (event.keyCode === $j.ui.keyCode.TAB && $j(nameInput).data("ui-autocomplete").menu.active) {
+			event.preventDefault();
+		  }
+		}).autocomplete({		 
+			source   : function(request,response) {		  
+			  $j.ajax({
+				url     : "<?php echo $this->getUrl('businessdirectory/listing/ajaxNames',array('directory_id'=>$directoryId)); ?>",
+				dataType: "json",
+				type    : 'POST',
+				data    : postData,
+				success : function(data) {										
+					response($j.map(data, function (item) {	
+						if((item.city != null && item.city != '') && (item.state != null && item.state != '')){
+						  citystate = item.city+', '+item.state;
+						}else if(item.state != null && item.state != ''){
+						  citystate = item.state;
+						}else if(item.city != null && item.city != ''){
+						  citystate = item.city;
+						} else {
+						  citystate = null;
+						}
+						return {
+							name  : item.name,
+							city  : item.city,
+							state : item.state,
+							citystate : citystate,
+							url   : item.url // not currently doing anything with listing urls here but the data is returned just in case i want to use it in the future
+						};
+					}));
+				  }
+			  });	  
+			},
+			minLength: 1,						    
+			focus: function(event,ui) {		 
+			  $j(nameInput).val(ui.item.name);
+			  $j(locationInput).val(ui.item.citystate);
+			  return false;
+			},
+			select: function (event, ui) {
+			  $j(nameInput).val(ui.item.name);
+			  $j(locationInput).val(ui.item.citystate);
+			  return false;
+			}				
+		  }).data('ui-autocomplete')._renderItem = function(ul, item) {
+			var name = "<a style='line-height:normal;'><strong>"+item.name+"</strong>";
+			if(item.citystate != null){
+			  var location = "<br /><span style='font-size:11px;'>"+item.citystate+"</span></a>";
+			} else {
+			  var location = "</a>";
+			}
+			var menuItem = name+location;
+			return $j("<li></li>")
+			  .data("ui-autocomplete-item",item)
+			  .append(menuItem)
+			  .appendTo(ul);
+		  };			  
+	  }
+  }
+	
+  $j(document).on("keydown","#directory_name",function(){
+	obj.nameAutocomplete(this,"#directory_location");
+  });
+
+});
+</script>

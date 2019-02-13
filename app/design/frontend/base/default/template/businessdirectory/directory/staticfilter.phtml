@@ -1,0 +1,26 @@
+<?php $filters = $this->getFilterValues(); ?>
+<?php if(!empty($filters)): ?>
+<div class="fieldset block-staticfilter <?php echo $this->getElementClass(); ?>">
+  <?php if($this->getFilterLabel()): ?>
+  <h2 class="legend"><?php echo Mage::helper('businessdirectory')->__($this->getFilterLabel()); ?></h2>
+  <?php endif; ?>
+  <?php foreach($filters['values'] as $columnNum => $column): ?>
+  <ul class="filter-list" style="width:<?php echo $column['columnWidth']; ?>%;">
+    <?php foreach($column as $key => $value): ?>
+    <?php if(is_array($value)): ?>
+    <?php $label = Mage::helper('businessdirectory')->convertStateAbbreviation($value['value'],$value['country']); ?>
+    <li><a href="<?php echo $this->getFilterUrl($value['value']); ?>" title="<?php echo $this->getFilterLinkTitleTag(array('filter_option'=>$label)); ?>"><?php echo $label; ?></a></li>
+    <?php endif; ?>
+    <?php endforeach; ?>
+  </ul>
+  <?php endforeach; ?>
+  <?php if($this->getCurrentFilterField()): ?>
+    <div class="block-clear-filters"> <a href="<?php echo $this->getDirectory()->getUrl(); ?>" title="Clear Location Filters">Clear All Location Filters</a> </div>
+  <?php endif; ?>
+  <div class="clear"></div>
+</div>
+<?php elseif($this->getCurrentFilterField()): ?>
+<div class="fieldset block-staticfilter empty">
+  <div class="block-clear-filters"> <a href="<?php echo $this->getDirectory()->getUrl(); ?>" title="Clear Location Filters">Clear All Location Filters</a> </div>
+</div>
+<?php endif; ?>

@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<layout version="1.1.0">  
+  <businessdirectory_listing_list translate="label">    
+	<reference name="root">
+	  <action method="addBodyClass"><classname>businessdirectory</classname></action>
+	  <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+	</reference>  
+  
+	<reference name="head">	
+	  <action method="addJs"><script>commerceextensions/jquery.js</script></action> 
+	  <action method="addJs"><script>commerceextensions/noconflict.js</script></action> 
+	  <action method="addJs"><script>commerceextensions/businessdirectory/jqueryui/jquery-ui-1.10.4.custom.min.js</script></action>
+	  <action method="addItem"><type>js_css</type><name>commerceextensions/businessdirectory/jqueryui/css/flick/jquery-ui-1.10.4.custom.min.css</name></action>  
+	  <action method="addItem"><type>skin_css</type><name>css/commerceextensions/businessdirectory.css</name></action>
+	  <block type="businessdirectory/directory_content" name="directory.js" template="businessdirectory/directory/js.phtml"/>
+	</reference>
+	
+	<reference name="content">	  
+	  <block type="page/html_wrapper" name="cms.wrapper" translate="label">
+		<label>Business Directory Listings Wrapper</label>
+		<action method="setElementClass"><value>std</value></action>
+		<block type="businessdirectory/directory" name="directory"/>
+		<block type="businessdirectory/directory_content" name="page_content_heading" template="cms/content_heading.phtml"/>	    		
+	  </block>			  	  
+	  <block type="businessdirectory/directory_content" name="directory.content" template="businessdirectory/directory/content.phtml"/> 
+	  <block type="businessdirectory/directory_staticfilter" name="directory.staticfilter" template="businessdirectory/directory/staticfilter.phtml"/>
+	  <block type="businessdirectory/directory_search" name="directory.search" template="businessdirectory/directory/search.phtml"/>	  	  	  
+	  <block type="businessdirectory/directory_listing" name="directory.listings" template="businessdirectory/directory/list.phtml"/>	  
+	  <block type="businessdirectory/disclaimer" name="directory.disclaimer" template="businessdirectory/disclaimer.phtml"/>   
+	</reference>
+	
+	<reference name="left">
+	  <block type="businessdirectory/directory_featured" name="directory.featured" before="directory.map" template="businessdirectory/directory/featured.phtml"/>
+	  <block type="businessdirectory/directory_listing" name="directory.map" before="-" template="businessdirectory/directory/map.phtml"/>
+	</reference>
+	
+	<reference name="right">
+	  <block type="businessdirectory/directory_newlisting" name="directory.newlisting" before="-" template="businessdirectory/directory/newlisting.phtml"/>
+	  <block type="businessdirectory/directory_featured" name="directory.featured" after="directory.newlisting" template="businessdirectory/directory/featured.phtml"/>
+	  <block type="businessdirectory/directory_listing" name="directory.map" after="directory.featured" template="businessdirectory/directory/map.phtml"/>
+	</reference>
+	<remove name="catalog.compare.sidebar" />	
+	<remove name="cart_sidebar"	/>
+	<remove name="right.poll" />
+	<remove name="right.permanent.callout" />
+	<remove name="left.permanent.callout" />
+  </businessdirectory_listing_list>
+  
+  <businessdirectory_listing_profile translate="label">
+	<reference name="root">
+	  <action method="addBodyClass"><classname>businessdirectory</classname></action>
+	  <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+	</reference>
+	  
+	<reference name="head">	
+	  <action method="addItem"><type>skin_css</type><name>css/commerceextensions/businessdirectory.css</name></action>	   
+	</reference>
+	
+	<reference name="content">	
+	  <block type="page/html_wrapper" name="cms.wrapper" translate="label">
+		<label>Business Directory Listings Wrapper</label>
+		<action method="setElementClass"><value>std</value></action>
+		<block type="businessdirectory/directory_listing_profile" name="profile"/>	    		
+	  </block>
+	  
+	  <block type="businessdirectory/directory_listing_profile_data" name="profile.view" template="businessdirectory/directory/profile/view.phtml">
+		<block type="businessdirectory/directory_listing_profile_data" name="profile.heading" template="businessdirectory/directory/profile/view/heading.phtml"/>
+		<block type="businessdirectory/directory_listing_profile_data" name="profile.content" template="businessdirectory/directory/profile/view/content.phtml"/> 
+		<block type="businessdirectory/disclaimer" name="profile.disclaimer" template="businessdirectory/disclaimer.phtml"/>  
+	  </block>
+	</reference>	
+	
+	<reference name="left">
+	  <block type="businessdirectory/directory_listing_profile_data" name="profile.map" before="-" template="businessdirectory/directory/profile/view/map.phtml"/>
+	</reference>
+	
+	<reference name="right">	
+	  <block type="businessdirectory/directory_listing_profile_data" name="profile.image" before="-" template="businessdirectory/directory/profile/view/image.phtml"/>
+	  <block type="businessdirectory/directory_newlisting" name="profile.newlisting" after="profile.image" template="businessdirectory/directory/newlisting.phtml"/>	    
+	  <block type="businessdirectory/directory_featured" name="profile.featured" after="profile.newlisting" template="businessdirectory/directory/featured.phtml"/>
+	  <block type="businessdirectory/directory_listing_profile_data" name="profile.map" after="profile.featured" template="businessdirectory/directory/profile/view/map.phtml"/>	  
+	</reference>	
+	<remove name="catalog.compare.sidebar" />	
+	<remove name="cart_sidebar"	/>
+	<remove name="right.poll" />
+	<remove name="right.permanent.callout" />
+	<remove name="left.permanent.callout" />	
+  </businessdirectory_listing_profile>
+  
+  <businessdirectory_listing_redirect>      
+	<reference name="root">
+	  <action method="addBodyClass"><classname>businessdirectory</classname></action>
+	  <action method="setTemplate"><template>page/empty.phtml</template></action>  
+	</reference>
+	
+	<reference name="head">	
+	  <action method="setRobots"><value>NOINDEX,NOFOLLOW</value></action>  
+	</reference>
+  </businessdirectory_listing_redirect>   
+  
+  <!--
+	you can also update layouts for individual listing profiles here
+	<BUSINESSDIRECTORY_LISTING_(listing id number here)>
+	</BUSINESSDIRECTORY_LISTING_(listing id number here)>
+  -->
+  
+  <businessdirectory_profile_register translate="label">
+    <update handle="customer_account_create"/>
+	<reference name="root">
+	  <action method="addBodyClass"><classname>businessdirectory</classname></action>
+	</reference>
+	
+	<reference name="head">	
+	  <action method="setRobots"><value>NOINDEX,FOLLOW</value></action>  
+	</reference>	
+	
+	<reference name="content">
+	  <action method="unsetChild"><alias>customer_form_register</alias></action>  
+	  <block type="businessdirectory/directory_listing_profile_claim_register" name="customer_form_register" template="customer/form/register.phtml">
+		  <block type="page/html_wrapper" name="customer.form.register.fields.before" as="form_fields_before" translate="label">
+			  <label>Form Fields Before</label>
+		  </block>
+	  </block>
+	</reference>	
+  </businessdirectory_profile_register>  
+  
+  <businessdirectory_profile_login translate="label">
+    <update handle="customer_account_login"/>
+	<label>Customer Account Login Form</label>
+	<remove name="right"/>
+	<remove name="left"/>
+
+	<reference name="root">
+	  <action method="addBodyClass"><classname>businessdirectory</classname></action>
+	  <action method="setTemplate"><template>page/1column.phtml</template></action>
+	</reference>
+	
+	<reference name="head">	
+	  <action method="setRobots"><value>NOINDEX,FOLLOW</value></action>  
+	</reference>		
+	
+	<reference name="content">
+	  <action method="unsetChild"><child>customer_form_login</child></action>
+	  <block type="businessdirectory/directory_listing_profile_claim_login" name="profile.claim.login" template="businessdirectory/directory/profile/claim/login.phtml" />
+	</reference>
+  </businessdirectory_profile_login>
+  
+  <businessdirectory_profile_claim translate="label">
+	<reference name="root">
+	  <action method="addBodyClass"><classname>businessdirectory</classname></action>
+	  <action method="setTemplate"><template>page/1column.phtml</template></action>
+	</reference>
+	
+	<reference name="head">	
+	  <action method="setRobots"><value>NOINDEX,FOLLOW</value></action>  
+	  <action method="addItem"><type>skin_css</type><name>css/commerceextensions/businessdirectory.css</name></action>
+	</reference>	
+	  
+	<reference name="content">
+	  <block type="businessdirectory/directory_listing_profile_claim_setup" name="profile.claim.form" template="businessdirectory/directory/profile/claim/form.phtml" />
+	</reference> 	
+  </businessdirectory_profile_claim> 
+  
+  <businessdirectory_profile_new>
+    <update handle="businessdirectory_profile_claim"/>
+  </businessdirectory_profile_new>
+  
+  <businessdirectory_profile_update>
+    <update handle="businessdirectory_profile_claim"/>
+  </businessdirectory_profile_update> 
+  
+  <businessdirectory_profile_success>
+	<reference name="head">	
+	  <action method="setRobots"><value>NOINDEX,NOFOLLOW</value></action>  
+	</reference>  
+  </businessdirectory_profile_success>   
+    
+</layout>

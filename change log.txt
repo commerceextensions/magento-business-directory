@@ -1,0 +1,52 @@
+BusinessDirectory 1.1.0
+Added ability to remove the "Claim Profile" option from directory if site admin does not want customers to have the ability to claim profiles
+Added ability to remove the "Create New Profile" option from directory if site admin does not want customers to have the ability to create profiles
+Added setting allowing the system to automatically aconvert the business's name into the URL for the listing profile with or without location information appended to the URL. You can allow the system to append location information to the url like this: 'somestore-sneaker-shop-chicago-il'
+Added Listing ID and Directory Name to listing form for easy reference
+Fixed login/register issue. Customers were being redirected to their customer account pages instead of the claim/update/create profile pages
+Fixed issue with blank breadcrumbs if there was not content heading entered
+Fixed issue in pending listing page where if there is no old / new data to compare as with a new listing, it does not attempt to create the comparison chart and display errors
+Made content heading a required field for the directory. All directories need to have a name.
+Fixed URL apostrophe issue. Previously, if a user were to submit a listing, the extension would convert the business name into a url. Anything with an apostrophe would format incorrectly. A business name of Shawn's Sneaker Shop would turn into the url somestore-sneaker-shop. After the fix, it will convert it to somestore-sneaker-shop.
+Fixed issue when a customer would claim or update a listing, the system would create a new url for the listing instead of using the existing url for that listing.
+
+BusinessDirectory 1.2.0
+Removed caching from the "update profile" button. Previously, if a profile owner logged in and the page was cached, they would not see the "update profile" button.
+Added "featured listings" box to the profile pages. Now it shows on both the listings and the profile pages
+On profile page, moved company logo to top of right column. This allows the logo to be larger and helps the page render better on mobile devices
+Fixed issue where if you were to change a "Featured Listing" to a non-Featured Listing, the logo and social links would still show on the front end. Now, if you revert a listing back to a non-featured listing, those items disappear from the front end. 
+Moved "Add Your Company Free" section to to top of right column. It looks better there and is more prominent on the page now in order to attract more people to list.
+Corrected several php syntax errors on both front and backend.
+Reworked the "static filters" area on the frontend to make it less confusing to users.
+Fixed additional issues with login-redirect.
+Added functionality so that a developer can easily call "setElementClass" from layout xml files for easier customization
+Made the profile setup form secure so that users do not get a warning that they are about to submit an insecure form.
+
+BusinessDirectory 1.3.0
+Added EMAIL module. When people add a profile, claim a profile, update a profile, or upgrade a profile, they automatically receive an email catered towards whatever action they took. For those that choose to go with a Standard Listing instead of a Featured Listing, the email templates contain reminders and enticements as to how easy and free it is to go with a Featured Listing. There are 10 email templates in all.	
+Added event observers for profile create, claim and update
+	businessdirectory_profile_new_submit_after
+	businessdirectory_profile_new_standard_approve_after
+	businessdirectory_profile_new_featured_approve_after
+	businessdirectory_profile_claim_submit_after
+	businessdirectory_profile_claim_approve_after
+	businessdirectory_profile_claim_standard_approve_after
+	businessdirectory_profile_claim_featured_approve_after
+	businessdirectory_profile_update_submit_after
+	businessdirectory_profile_update_approve_after
+	businessdirectory_profile_update_standard_approve_after
+	businessdirectory_profile_update_featured_approve_after
+	businessdirectory_profile_update_upgrade_approve_after
+Fixed issue where magento notifications were appearing twice on page.
+
+BusinessDirectory 1.4.0
+Improvements made to search autocomplete. When typing a business name in the search box, the autocomplete will show the city and state below the business name, this way if there are multiple businesses with the same name, it will be easy to distinguish the difference between them
+
+BusinessDirectory 1.5.0
+Added Helper function that would convert the users frontend input linebreaks into html paragraph tags
+Added setting to allow a user to declare a directory as US based. 
+For US based directories, added a Helper function that would standardize phone number formatting to (123) 456-7890
+
+BusinessDirectory 1.5.1
+Updated extension routers to be compatible with patch 6788
+

@@ -1,0 +1,58 @@
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"var firstname":"First Name",
+"var lastname":"Last Name",
+"var customer_email":"Customer Email",
+"var directory_name":"Directory Name",
+"var directory_heading":"Directory Heading",
+"var directory_url":"Directory URL",
+"var listing_url":"Listing URL",
+"var listing_email":"Listing Email",
+"var listing_name":"Listing Name",
+"var logo_alt":"Email Logo Image Alt",
+"var store.getFrontendName()":"Store Name",
+"store url=\"customer/account/\"":"Customer Account Url"}
+@-->
+<!--@subject {{var firstname}}, the recent changes to your company's profile are now live! @-->
+<!--@styles
+body,td { color:#2f2f2f; font:12px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="background:#F6F6F6; margin:0; padding:0;"> <span style="color:#F6F6F6; font-size:0px;">{{var firstname}}, the recent changes to your company's profile, {{var listing_name}}, are now live on the site!</span>
+  <table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
+    <tr>
+      <td align="center" valign="top" style="padding:20px 0 20px 0"><!-- [ header starts here] -->
+        
+        <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+          <tr>
+            <td valign="top"><table border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="width:auto;" valign="top"><div style="float:left;"><a href="{{config path="web/unsecure/base_url"}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}" border="0" style="max-height:75px;"/></a></div></td>
+                  <td valign="top"><div style="float:left; margin-left:20px;"> <strong>{{config path="general/store_information/name"}}</strong><br />
+                      <strong>Phone: </strong>{{config path="general/store_information/phone"}}<br />
+                      <strong>Email: </strong><a href="mailto:{{config path="trans_email/ident_general/email"}}" target="_top">{{config path="trans_email/ident_general/email"}}</a><br />
+                      <strong>Webstore: </strong><a href='{{config path="web/unsecure/base_url"}}'>{{config path="web/unsecure/base_url"}}</a><br />
+                    </div></td>
+                </tr>
+              </table></td>
+          </tr>
+          <!-- [ middle starts here] -->
+          <tr>
+            <td valign="top">
+            <h2>Hello {{var firstname}},</h2>
+            <p>The recent changes to the Featured Listing of your company, <strong>{{var listing_name}}</strong>, are now live on the site! To see your listing, please <a href="{{var listing_url}}" title="{{var listing_name}}" target="_blank">click here</a>.</p>
+            <p>Thank you again for listing with us, we wish you and your business many years of success.</p>
+</td>
+          </tr>
+          <tr>
+            <td bgcolor="#EAEAEA" align="center" style="background:#EAEAEA; text-align:center;"><center>
+                <p style="margin:0;">Thank you again, <strong>{{var store.getFrontendName()}}</strong></strong></p>
+              </center></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</div>
+</body>

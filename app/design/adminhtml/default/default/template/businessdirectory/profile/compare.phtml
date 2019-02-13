@@ -1,0 +1,54 @@
+<?php $comparisonData = $this->getComparisonArray(); ?>
+<?php $comparisonFields = $this->getComparisonFields(); ?>
+<?php if(!empty($comparisonData)): ?>
+  <div id="comparison-data-wrapper">
+    <table border="0" cellspacing="0" cellpadding="0" id="comparison-data-table" class="comparison-data-table">
+      <tr>
+        <th></th>
+        <th>Current Data</th>
+        <th>Pending Data</th>
+      </tr>
+      <?php foreach($comparisonFields as $field): ?>
+        <tr>
+          <td class="label"><?php echo $this->getComparisonLabel($field); ?></td>
+          <td class="data" style="width:45%;"><?php echo $comparisonData['current'][$field]; ?></td>
+          <?php if($comparisonData['current'][$field] != $comparisonData['pending'][$field]): ?>
+            <?php $class = 'data-changed'; ?>
+          <?php else: ?>
+            <?php $class = null; ?>
+          <?php endif; ?>
+          <td class="data <?php echo $class; ?>" style="width:45%;"><?php echo $comparisonData['pending'][$field]; ?></td>
+        </tr>
+      <?php endforeach; ?>
+    </table>
+  </div>
+  <script type="text/javascript">
+    decorateTable('comparison-data-table');
+
+    jQuery(function() {
+      jQuery("#comparison-data-wrapper").dialog({
+        autoOpen: false,
+        modal: true,
+        width: window.innerWidth * .85,
+        height: "auto",
+        closeOnEscape: true,
+        draggable: true,
+        resizable: true,
+        title: "Compare User Changes Before Approving (Changed Data Has Red Background)",
+        show: {
+          effect: "fadeIn",
+          duration: 250
+        },
+        hide: {
+          effect: "fadeOut",
+          duration: 250
+        }
+      });
+    });
+    function compareChanges() {
+      jQuery("#comparison-data-wrapper").dialog("open");
+    }
+    ;
+
+  </script>
+<?php endif; ?>

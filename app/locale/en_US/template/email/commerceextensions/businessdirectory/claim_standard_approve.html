@@ -1,0 +1,80 @@
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"var firstname":"First Name",
+"var lastname":"Last Name",
+"var customer_email":"Customer Email",
+"var directory_name":"Directory Name",
+"var directory_heading":"Directory Heading",
+"var directory_url":"Directory URL",
+"var listing_url":"Listing URL",
+"var listing_email":"Listing Email",
+"var listing_name":"Listing Name",
+"var logo_alt":"Email Logo Image Alt",
+"var store.getFrontendName()":"Store Name",
+"store url=\"customer/account/\"":"Customer Account Url"}
+@-->
+<!--@subject {{var firstname}}, your company's Standard Listing has been approved! @-->
+<!--@styles
+body,td { color:#2f2f2f; font:12px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="background:#F6F6F6; margin:0; padding:0;"> <span style="color:#F6F6F6; font-size:0px;">{{var firstname}}, your new Standard Listing has been approved!</span>
+  <table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
+    <tr>
+      <td align="center" valign="top" style="padding:20px 0 20px 0"><!-- [ header starts here] -->
+        
+        <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+          <tr>
+            <td valign="top"><table border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="width:auto;" valign="top"><div style="float:left;"><a href="{{config path="web/unsecure/base_url"}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}" border="0" style="max-height:75px;"/></a></div></td>
+                  <td valign="top"><div style="float:left; margin-left:20px;"> <strong>{{config path="general/store_information/name"}}</strong><br />
+                      <strong>Phone: </strong>{{config path="general/store_information/phone"}}<br />
+                      <strong>Email: </strong><a href="mailto:{{config path="trans_email/ident_general/email"}}" target="_top">{{config path="trans_email/ident_general/email"}}</a><br />
+                      <strong>Webstore: </strong><a href='{{config path="web/unsecure/base_url"}}'>{{config path="web/unsecure/base_url"}}</a><br />
+                    </div></td>
+                </tr>
+              </table></td>
+          </tr>
+          <!-- [ middle starts here] -->
+          <tr>
+            <td valign="top">
+              <h2>Hello {{var firstname}},</h2>
+              <p>The Standard Listing for your company, <strong>{{var listing_name}}</strong>, has been approved and any changes or updates you made to it are now live on the site!</p>
+              <p>We also want to say thank you for choosing to list your business with us in our <strong>{{var directory_name}}</strong> directory. We hope you receive as many leads and contacts from the directory as you want. If you ever have any questions or need anything else, please do not hesitate to respond to this email and let us know.</p>
+              <p>We also wanted to take a moment to remind you that you also have the opportunity to become a <strong>"Featured Listing" for FREE</strong>.</p>
+              <p><strong>What are the benefits to becoming a "Featured Listing"?</strong></p>
+              <ul>
+                <li>Constant exposure in the "Featured Listing" box that appears in the right hand column of every page of the directory.</li>
+                <li>Ability to gain more "Likes" or "Follows" on your Facebook, Twitter, and Google+ pages.</li>
+                <li>Increased Brand Recognition by displaying your logo in the list and on your profile page.</li>
+                <li><a href="{{var directory_url}}" title="{{var directory_name}}" target="_blank">Take a look at the directory</a> and notice the "Featured Listing" box on the top right hand side. You could be more prominently featured there in just a few minutes.</li>
+              </ul>
+              <strong>If the Standard Listing and Featured Listing are both free, what is the benefit to {{var store.getFrontendName()}}?</strong>
+              <ul>
+                <li><strong>Standard Listing: </strong>Absolutely nothing, but we are still happy to give you free advertising.</li>
+                <li><strong>Featured Listing:</strong> A link. The only requirement to become a "Featured Listing" is that somewhere on your website, maybe you have a "Links" page or some other handy place on the site, is to place a link to our site <a href="{{config path="web/unsecure/base_url"}}" target="_blank">{{config path="web/unsecure/base_url"}}</a>. This is the one and only benefit we receive from hosting and maintaining this directory.</li>
+              </ul>
+              <p>Additionally, as a small business, we are always looking for ways to network and further our relationships with other businesses, so if you ever have any ideas on how we can partner to grow both of our businesses, we would be happy to listen.</p>
+              <p>To view your company's listing in the directory, please <a href="{{var listing_url}}" title="{{var listing_name}}" target="_blank">click here</a>.</p>
+              <p><strong>To update your profile or upgrade to a Featured Listing, please follow these instructions</strong>:</p>
+              <ol>
+                <li><a href="{{var listing_url}}" title="{{var listing_name}}" target="_blank">Locate your profile</a> in the directory and then log in.</li>
+                <li>Click the "Update Profile" button located on your listing.</li>
+                <li>Edit the information as needed and click "Submit".</li>
+                <li>Please note that updates will usually reflect on the site within 24 hours. We manually review them to filter out any spam or inappropriate content.</li>
+              </ol>
+              <p>Thank you again for listing with us, we wish you and your business many years of success.</p></td>
+          </tr>
+          <tr>
+            <td bgcolor="#EAEAEA" align="center" style="background:#EAEAEA; text-align:center;"><center>
+                <p style="margin:0;">Thank you again, <strong>{{var store.getFrontendName()}}</strong></strong></p>
+              </center></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</div>
+</body>

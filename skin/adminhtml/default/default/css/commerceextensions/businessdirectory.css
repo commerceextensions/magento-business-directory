@@ -1,0 +1,35 @@
+/* comparison data table */
+.comparison-data-table { width:100%; border:1px solid #bebcb7; }
+.comparison-data-table .even  { background:#f8f7f5 }
+.comparison-data-table .odd { background:#eeeded; }
+.comparison-data-table td.last,
+.comparison-data-table th.last { border-right:0; }
+.comparison-data-table tr.last th,
+.comparison-data-table tr.last td { border-bottom:0 !important; }
+.comparison-data-table th { padding:3px 8px; font-weight:bold; }
+.comparison-data-table td { padding:3px 8px; }
+.comparison-data-table td.label{background:#eeeded; font-weight:bold; width:150px;}
+.comparison-data-table thead th { font-weight:bold; border-right:1px solid #c2d3e0; padding:2px 8px; color:#0a263c; white-space:nowrap; vertical-align:middle; }
+.comparison-data-table thead th.wrap { white-space:normal; }
+.comparison-data-table thead th a,
+.comparison-data-table thead th a:hover { color:#fff; }
+.comparison-data-table thead th { background:url(../images/bkg_th.gif) repeat-x 0 100% #d9e5ee; }
+.comparison-data-table thead th .tax-flag { font-size:11px; white-space:nowrap; }
+.comparison-data-table tfoot { border-bottom:1px solid #d9dde3; }
+.comparison-data-table tfoot tr.first td { background:url(../images/bkg_tfoot.gif) 0 0 repeat-x; }
+.comparison-data-table tfoot tr { background-color:#dee5e8 !important; }
+.comparison-data-table tfoot td { padding-top:1px; padding-bottom:1px; border-bottom:0; border-right:1px solid #d9dde3; }
+.comparison-data-table tfoot strong { font-size:16px; }
+.comparison-data-table tbody th,
+.comparison-data-table tbody td { border-bottom:1px solid #d9dde3; border-right:1px solid #d9dde3; }
+.comparison-data-table tbody td.data-changed{background:#faebe7 !important;border:1px dashed #eb340a !important;}
+
+.column {float: left;width:100%;}
+.portlet {margin: 0 0 1em 0;padding: 0.3em;width:98% !important;}
+.portlet-header {padding: 0.2em 0.3em;margin-bottom: 0.5em;position: relative;cursor:move;}
+.portlet-toggle {position: absolute;top: 50%;right: 0;margin-top: -8px;cursor:auto;}
+.portlet-content {padding: 0.4em;}
+.portlet-content table{width:100%;}
+.portlet-placeholder {border: 1px dotted black;margin: 0 1em 1em 0;height: 50px;}
+.portlet-content textarea{max-height:75px;}
+.fieldset-wide p{width:auto !important;}

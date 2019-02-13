@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<layout>
+  <adminhtml_businessdirectory_index>
+    <reference name="content">
+	  	<block type="businessdirectory/adminhtml_directory" name="directory.grid"/>
+		</reference>
+  </adminhtml_businessdirectory_index>
+
+  <adminhtml_businessdirectory_edit>
+    <update handle="editor"/>
+		<reference name="head">
+			<action method="setCanLoadExtJs"><flag>1</flag></action>
+			<action method="setCanLoadTinyMce"><flag>1</flag></action>
+			<action method="addJs"><script>lib/flex.js</script></action>
+			<action method="addJs"><script>mage/adminhtml/flexuploader.js</script></action>
+			<action method="addJs"><script>mage/adminhtml/browser.js</script></action>
+			<action method="addJs"><script>prototype/window.js</script></action>
+			<action method="addItem"><type>js_css</type><name>prototype/windows/themes/default.css</name></action>
+			<action method="addItem"><type>js_css</type><name>prototype/windows/themes/magento.css</name></action>
+			<action method="addItem"><type>js</type><name>mage/adminhtml/wysiwyg/tiny_mce/setup.js</name><params/></action>
+			<!-- begin needed files for jqueryui dragable / sortable and other jqueryui options -->
+			<action method="addJs"><script>commerceextensions/jquery.js</script></action>
+			<action method="addJs"><script>commerceextensions/noconflict.js</script></action>
+			<action method="addJs"><script>commerceextensions/businessdirectory/jqueryui/jquery-ui-1.10.4.custom.min.js</script></action>
+			<action method="addItem"><type>js_css</type><name>commerceextensions/businessdirectory/jqueryui/css/flick/jquery-ui-1.10.4.custom.min.css</name></action>
+			<!-- end needed files for jqueryui dragable / sortable and other jqueryui options -->
+			<action method="addItem"><type>skin_css</type><name>css/commerceextensions/businessdirectory.css</name></action>
+		</reference>
+  </adminhtml_businessdirectory_edit>
+  
+  <adminhtml_businessdirectory_listing_edit>
+    <update handle="editor"/>
+		<reference name="head">
+			<action method="setCanLoadExtJs"><flag>1</flag></action>
+			<action method="setCanLoadTinyMce"><flag>1</flag></action>
+			<action method="addJs"><script>lib/flex.js</script></action>
+			<action method="addJs"><script>mage/adminhtml/flexuploader.js</script></action>
+			<action method="addJs"><script>mage/adminhtml/browser.js</script></action>
+			<action method="addJs"><script>prototype/window.js</script></action>
+			<action method="addItem"><type>js_css</type><name>prototype/windows/themes/default.css</name></action>
+			<action method="addItem"><type>js_css</type><name>prototype/windows/themes/magento.css</name></action>
+			<action method="addItem"><type>js</type><name>mage/adminhtml/wysiwyg/tiny_mce/setup.js</name><params/></action>
+			<action method="addJs"><script>commerceextensions/jquery.js</script></action>
+			<action method="addJs"><script>commerceextensions/noconflict.js</script></action>
+			<action method="addJs"><script>commerceextensions/businessdirectory/jqueryui/jquery-ui-1.10.4.custom.min.js</script></action>
+			<action method="addItem"><type>js_css</type><name>commerceextensions/businessdirectory/jqueryui/css/flick/jquery-ui-1.10.4.custom.min.css</name></action>
+			<action method="addJs"><script>commerceextensions/businessdirectory/customergrid.js</script></action>
+		</reference>
+  </adminhtml_businessdirectory_listing_edit>
+
+	<adminhtml_businessdirectory_pending_index>
+		<reference name="content">
+			<block type="businessdirectory/adminhtml_directory_pending" name="pending.grid"/>
+		</reference>
+	</adminhtml_businessdirectory_pending_index>
+  
+  <adminhtml_businessdirectory_pending_edit>
+    <update handle="editor"/>
+		<reference name="head">
+			<action method="setCanLoadExtJs"><flag>1</flag></action>
+			<action method="setCanLoadTinyMce"><flag>1</flag></action>
+			<action method="addJs"><script>lib/flex.js</script></action>
+			<action method="addJs"><script>mage/adminhtml/flexuploader.js</script></action>
+			<action method="addJs"><script>mage/adminhtml/browser.js</script></action>
+			<action method="addJs"><script>prototype/window.js</script></action>
+			<action method="addItem"><type>js_css</type><name>prototype/windows/themes/default.css</name></action>
+			<action method="addItem"><type>js_css</type><name>prototype/windows/themes/magento.css</name></action>
+			<action method="addItem"><type>js</type><name>mage/adminhtml/wysiwyg/tiny_mce/setup.js</name><params/></action>
+			<action method="addJs"><script>commerceextensions/jquery.js</script></action>
+			<action method="addJs"><script>commerceextensions/noconflict.js</script></action>
+			<action method="addJs"><script>commerceextensions/businessdirectory/jqueryui/jquery-ui-1.10.4.custom.min.js</script></action>
+			<action method="addItem"><type>js_css</type><name>commerceextensions/businessdirectory/jqueryui/css/flick/jquery-ui-1.10.4.custom.min.css</name></action>
+			<action method="addJs"><script>commerceextensions/businessdirectory/customergrid.js</script></action>
+			<action method="addItem"><type>skin_css</type><name>css/commerceextensions/businessdirectory.css</name></action>
+		</reference>
+
+		<reference name="js">
+			<block type="businessdirectory/adminhtml_directory_pending_compare" name="profile.compare" template="businessdirectory/profile/compare.phtml"/>
+		</reference>
+  </adminhtml_businessdirectory_pending_edit>
+</layout>  

@@ -1,0 +1,80 @@
+.data-table td{padding:10px;}
+.data-table .directory-data .data-group{float:left;}
+.data-table .directory-data .directory-image{float:right;}
+.data-table .directory-data .listing-title{width: 100%;overflow: hidden;border-bottom: 1px solid #ccc;margin: 0 0 10px;}
+.data-table .directory-data .listing-title button{float:right; margin-left:5px;}
+.data-table .directory-data{width:100%;float:left;}
+.data-table .directory-data p{margin-bottom:0px;}
+.data-table .directory-data a{text-decoration:none;}
+.data-table .directory-data a:hover{text-decoration:underline;}
+
+.directory-social-wrapper{margin:5px 0 0; padding:5px; background:#FFFFFF;}
+.directory-social-wrapper .directory-social{height:16px;float:left; margin:0 5px 0 0;}
+.directory-social-wrapper .directory-social .directory-icon{float:left; margin-right:2px;}
+
+/* main list */
+.businessdirectory-listing-list .page-title{margin-bottom:15px;}
+.businessdirectory-listing-list .newlisting-link{margin-top:12px;}
+#directory-listing-table h1, #directory-listing-table h2{margin-bottom:5px; float:left;}
+
+/* featured block */
+.block-featured li.listing{min-height:50px; padding:5px;}
+.block-featured li.listing .directory-image{float:left; margin-right:5px; width:50px; height:50px;}
+.block-featured li.listing .directory-image img{width:50px; height:50px;}
+.block-featured li.listing .directory-data{width:100%; box-sizing: border-box; line-height:normal; font-size:10px;}
+.block-featured li.listing .directory-data p{margin-bottom:0px;}
+.block-featured li.listing .directory-data .listing-title{font-weight:bold;}
+
+/* search form */
+.block-search .form-list .field{width:50%;display:block; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+.block-search .form-list .field.first{padding-right:5px;}
+.block-search .form-list .input-box{width:100%;display:block; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+.block-search .form-list input.input-text{width:100%; display:block; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+.block-search .buttons-set{ margin-top:0; border:none; padding:0 16px;}
+
+/* newlisting block */
+.block-newlisting .block-content{padding:5px 9px 9px;}
+
+/* static filter */
+.block-staticfilter ul.filter-list{float:left; min-width:100px;display:block; padding-right:10px; box-sizing:border-box; -moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
+.block-staticfilter .block-clear-filters{width:100%;box-sizing:border-box; -moz-box-sizing:border-box;-webkit-box-sizing:border-box; clear:both; text-align:right; padding:10px 10px 0;}
+.block-staticfilter.empty{padding:10px;}
+.block-staticfilter.empty .block-clear-filters{padding:0;}
+
+/* profile page */
+.directory-heading{margin-bottom:15px; background:#faf7ee;}
+.directory-heading h1{margin-bottom:5px;}
+.directory-heading p{margin-bottom:0;}
+.businessdirectory-listing-profile .block-directory{padding:10px;border:1px solid #bebcb7;margin-bottom: 15px;padding:10px;background: #faf7ee; width:100%; height:auto; display:block; box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
+.businessdirectory-listing-profile .block-directory .featured-title{float:left; margin:0; line-height:normal; vertical-align:middle;}
+.businessdirectory-listing-profile .block-directory.button-wrapper button{float:right;}
+.businessdirectory-listing-profile .block-disclaimer{background:#FFFFFF;}
+
+/* sprite */
+.directory-icon, .profile-icon{background: url(../../images/commerceextensions/businessdirectory/social-sprite.png) no-repeat;}
+.directory-twitter{background-position: -1px -22px;width: 16px;height: 16px;}
+.directory-googleplus{background-position: 0 0;width: 16px;height: 16px;}
+.directory-facebook{background-position: 0 -45px;width: 16px;height: 16px;}
+.profile-twitter{background-position: -2px -114px;width: 35px;height: 35px;}
+.profile-googleplus{background-position: 0 -76px;width: 35px;height: 35px;}
+.profile-facebook{background-position: 0 -151px;width: 35px;height: 35px;}
+
+/* profile setup page */
+#profile-setup-form li.wide #listing_comments{width:100%;box-sizing: border-box;  -moz-box-sizing: border-box; -webkit-box-sizing: border-box;height:60px;}
+#profile-setup-form li.wide #content{width:100%;box-sizing: border-box;  -moz-box-sizing: border-box; -webkit-box-sizing: border-box;height:250px;}
+#profile-setup-form li.wide .note-wrapper{width: 535px; box-sizing: border-box;border:1px solid #B6B6B6; padding:10px; line-height:normal;background:#FFFFFF;}
+#profile-setup-form li.wide .note-wrapper p{margin:0;}
+#profile-setup-form li.wide .note-wrapper ul{ list-style:disc; padding-left:20px; margin-bottom:15px;}
+#profile-setup-form li.wide .note-wrapper ul li{margin-bottom:0; line-height:normal;}
+#profile-setup-form li.wide .note-wrapper textarea{width:100%;box-sizing: border-box;  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; max-height:50px;margin-top:0; 
+background:#EAEAEA; color:#333333;}
+#profile-setup-form li.wide p.note{margin: 0;padding: 0 0 0 13px;background: url(../../images/commerceextensions/businessdirectory/note_bg.gif) 1px 6px no-repeat;font-size: 11px; color:#666666;}
+
+/* jqueryui css fixes */
+.ui-autocomplete .ui-menu-item{text-align:left !important;}
+
+#map .gm-style-iw p{margin-bottom:0;}
+.block-disclaimer{border:1px solid #CCCCCC; padding:10px; font-size:10px; line-height:normal; background:#FFFFFF;margin-top:15px;}
+.block-disclaimer .disclaimer-heading{margin-bottom:0;}
+
+.clear{height:0; clear:both;}

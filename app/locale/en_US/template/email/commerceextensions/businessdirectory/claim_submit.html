@@ -1,0 +1,54 @@
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"var firstname":"First Name",
+"var lastname":"Last Name",
+"var directory_name":"Directory Name",
+"var directory_heading":"Directory Heading",
+"var directory_url":"Directory URL",
+"var customer_email":"Customer Email",
+"var listing_email":"Listing Email",
+"var logo_alt":"Email Logo Image Alt",
+"var store.getFrontendName()":"Store Name",
+"store url=\"customer/account/\"":"Customer Account Url"}
+@-->
+<!--@subject {{var firstname}}, thank you for claiming your company on our directory! @-->
+<!--@styles
+body,td { color:#2f2f2f; font:12px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="background:#F6F6F6;margin:0; padding:0;"> <span style="color:#F6F6F6; font-size:0px;">{{var firstname}}, thank you for claiming your company on our {{var directory_name}} directory.</span>
+  <table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
+    <tr>
+      <td align="center" valign="top" style="padding:20px 0 20px 0"><!-- [ header starts here] -->
+        
+        <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+          <tr>
+            <td valign="top"><table border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="width:auto;" valign="top"><div style="float:left;"><a href="{{config path="web/unsecure/base_url"}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}" border="0" style="max-height:75px;"/></a></div></td>
+                  <td valign="top"><div style="float:left; margin-left:20px;"> <strong>{{config path="general/store_information/name"}}</strong><br />
+                      <strong>Phone: </strong>{{config path="general/store_information/phone"}}<br />
+                      <strong>Email: </strong><a href="mailto:{{config path="trans_email/ident_general/email"}}" target="_top">{{config path="trans_email/ident_general/email"}}</a><br />
+                      <strong>Webstore: </strong><a href='{{config path="web/unsecure/base_url"}}'>{{config path="web/unsecure/base_url"}}</a><br />
+                    </div></td>
+                </tr>
+              </table></td>
+          </tr>
+          <!-- [ middle starts here] -->
+          <tr>
+            <td valign="top"><h2>Hello {{var firstname}},</h2>
+              <p>Thank you for claiming your company, <strong><a href="{{var listing_url}}" title="{{var listing_name}}" target="_blank">{{var listing_name}}</a></strong>, on our <strong><a href="{{var directory_url}}" title="{{var directory_name}}" target="_blank">{{var directory_name}}</a></strong> directory. Please note that it may take 24-48 hours for any changes or updates you have made to appear live on the site. We manually review each listing to filter out any spam or inappropriate content. If you have any questions, please feel free to respond to this e-mail and let us know. </p>
+              <p>Thank you for choosing to list your business with us!</p></td>
+          </tr>
+          <tr>
+            <td bgcolor="#EAEAEA" align="center" style="background:#EAEAEA; text-align:center;"><center>
+                <p style="margin:0;">Thank you again, <strong>{{var store.getFrontendName()}}</strong></strong></p>
+              </center></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</div>
+</body>

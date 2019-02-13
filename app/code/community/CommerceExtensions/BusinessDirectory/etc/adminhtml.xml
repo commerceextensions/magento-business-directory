@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config>
+  <menu>
+    <cms>
+      <children>
+        <directories>
+          <title><![CDATA[Business Directories]]></title>
+          <sort_order>100</sort_order>
+          <action>adminhtml/businessdirectory/</action>
+          <children>
+            <manage>
+              <title><![CDATA[Active Directories]]></title>
+              <sort_order>100</sort_order>
+              <action>adminhtml/businessdirectory/</action>
+            </manage>
+            <pending>
+              <title><![CDATA[Pending Submissions]]></title>
+              <sort_order>200</sort_order>
+              <action>adminhtml/businessdirectory_pending/</action>
+            </pending>
+          </children>
+        </directories>
+      </children>
+    </cms>
+  </menu>
+  <acl>
+    <resources>
+		<all>
+			<title>Allow Everything</title>
+		</all>
+      <admin>
+        <children>
+          <cms>
+            <children>
+              <directories>
+                <title><![CDATA[Business Directories]]></title>
+                <sort_order>500</sort_order>
+                <children>
+                  <manage>
+                    <title><![CDATA[Active Directories]]></title>
+                    <sort_order>100</sort_order>
+                  </manage>
+                  <pending>
+                    <title><![CDATA[Pending Submissions]]></title>
+                    <sort_order>200</sort_order>
+                  </pending>
+                </children>
+              </directories>
+            </children>
+          </cms>
+        </children>
+      </admin>
+    </resources>
+  </acl>
+</config>

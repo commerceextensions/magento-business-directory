@@ -1,0 +1,8 @@
+<?php $_listing = $this->getListing(); ?>
+<?php if($this->canClaimProfile()): ?>
+  <?php if(!$_listing->getCustomerId() || $_listing->getCustomerId() == 0): ?>
+	<button type="button" title="Claim This Profile" class="button btn-claim-listing" onclick="setLocation('<?php echo $this->getUrl('*/profile/claim',array('listing_id'=>$_listing->getListingId())); ?>'); return false;"><span><span>Claim This Profile</span></span></button>              
+  <?php elseif(Mage::helper('businessdirectory/listing')->canShowUpdateButton($_listing)): ?> 
+	<button type="button" title="Update My Business Profile" class="button btn-update-listing" onclick="setLocation('<?php echo $this->getUrl('*/profile/update',array('listing_id'=>$_listing->getListingId())); ?>'); return false;"><span><span>Update My Profile</span></span></button>                                    
+  <?php endif; ?>
+<?php endif; ?>

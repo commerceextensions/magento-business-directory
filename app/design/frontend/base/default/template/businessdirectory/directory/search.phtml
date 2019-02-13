@@ -1,0 +1,28 @@
+<div class="fieldset block-search <?php echo $this->getElementClass(); ?>">
+  <form method="post" name="directory_search" id="directory-search" class="directory-search-form" action="<?php echo $this->getSearchUrl(); ?>">
+    <h2 class="legend"><?php echo Mage::helper('businessdirectory')->__('Search Listings By Name or Location') ?></h2>
+    <ul class="form-list">
+      <li class="fields">
+        <div class="field first">
+          <div class="input-box">
+            <input type="text" name="directory_name" id="directory_name" placeholder="<?php echo $this->getNamePlaceholderText(); ?>" value="<?php echo $this->getNameQueryText() ?>" class="input-text"/>
+          </div>
+        </div>
+        <div class="field">
+          <div class="input-box">
+            <input type="text" name="directory_location" id="directory_location" placeholder="<?php echo $this->getLocationPlaceholderText(); ?>" value="<?php echo $this->getLocationQueryText() ?>" class="input-text"/>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="buttons-set">
+      <button type="submit" title="Search Listings!" class="button"><span><span>Search</span></span></button>
+      <button type="button" title="Reset Search" class="button" onclick="setLocation('<?php echo $this->getResetUrl() ?>'); return false;"><span><span>Reset Search</span></span></button>
+    </div>
+  </form>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+  var directorySearchForm = new VarienForm('directory_search');
+//]]>
+</script>

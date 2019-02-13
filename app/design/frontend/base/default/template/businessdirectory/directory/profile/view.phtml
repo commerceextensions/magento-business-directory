@@ -1,0 +1,41 @@
+<?php $_directory = $this->getDirectory(); ?>
+<?php $_listing   = $this->getListing(); ?>
+<?php $_button    = $this->getButtonHtml($_listing); ?>
+<?php if($_listing->getIsFeatured() || trim($_button) != ''): ?>
+<div id="item-<?php echo $_listing->getListingId(); ?>" class="block-directory button-wrapper <?php echo $this->getElementClass(); ?>">
+  <?php if($_listing->getIsFeatured()): ?>
+    <h2 class="featured-title"><?php echo $_directory->getFeaturedListingButtonText(); ?></h2>
+  <?php endif; ?>
+  <?php echo $_button; ?>
+  <div class="clear"></div>
+</div>
+<?php endif; ?>
+<span <?php echo $this->getParentSchemaTag(); ?>>
+  <?php echo $this->getChildHtml('profile.heading'); ?>
+  <?php echo $this->getChildHtml('profile.content'); ?>
+  <?php echo $this->getChildHtml('profile.disclaimer'); ?>
+</span>
+<?php /*?><script>
+  IF I DECIDE TO LOAD THE CLAIM BUTTON VIA AJAX, I ONLY NEED TO UNCOMMENT THIS CODE
+  $j = jQuery;
+  $j(document).ready(function(){	
+	$j.ajax({  
+		  type       : 'POST',
+		  url        : '<?php echo $this->getUrl("businessdirectory/profile/button/"); ?>',
+		  data       : "listingId="+$j('.block-directory').attr("id"),
+		  dataType   : 'json',
+		  async      : true,
+		  success    : function(response) { 
+			$j.each(response, function(buttonId,buttonHtml) {
+			  if($j(buttonId).length == 0) {
+				var rowId = buttonId.replace("button","item");
+				$j(rowId).append(buttonHtml);
+			  } else {	 
+			    $j(buttonId).replaceWith(buttonHtml);
+			  }
+			});	                           
+		  }
+	}); 	
+		  
+  });
+</script><?php */?>

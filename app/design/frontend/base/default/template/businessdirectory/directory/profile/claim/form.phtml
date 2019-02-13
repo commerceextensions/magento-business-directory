@@ -1,0 +1,274 @@
+<div class="profile-setup <?php echo $this->getElementClass(); ?>">
+  <div class="page-title">
+    <h1>
+      <?php if($this->getListingId()): ?>
+      <?php echo $this->__('Complete / Update Details for %s',$this->getListingName()) ?>
+      <?php elseif($_directory = $this->getDirectory()): ?>
+      <?php echo $this->__('Company Details / %s',$_directory->getContentHeading()) ?>
+      <?php endif ?>
+    </h1>
+  </div>
+  <?php echo $this->getChildHtml('form_fields_before')?> <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+  <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="profile-setup-form" enctype="multipart/form-data" name="<?php echo $this->_getFormName(); ?>">
+    <div class="fieldset">
+      <input type="hidden" name="action" value="<?php echo $this->getAction(); ?>" />
+      <input type="hidden" name="customer_id" value="<?php echo $this->getCustomerId(); ?>" />
+      <input type="hidden" name="directory_id" value="<?php echo $this->getDirectoryId(); ?>" />
+      <?php if($this->getListingId()): ?>
+      <input type="hidden" name="listing_id" value="<?php echo $this->getListingId(); ?>" />
+      <?php endif; ?>
+      <h2 class="legend"><?php echo $this->__('Basic Information') ?></h2>
+      <ul class="form-list">
+        <li class="wide">
+          <label for="listing_name" class="required"><em>*</em><?php echo $this->__('Company Name') ?></label>
+          <div class="input-box">
+            <input type="text" name="listing_name" id="listing_name" value="<?php echo $this->escapeHtml($this->getListingName()) ?>" title="<?php echo $this->__('Company Name') ?>" class="input-text required-entry" />
+          </div>
+        </li>
+        <li class="wide">
+          <label for="address_line_one" class="required"><em>*</em><?php echo $this->__('Street Address') ?></label>
+          <div class="input-box">
+            <input type="text" name="address_line_one" value="<?php echo $this->escapeHtml($this->getAddressLineOne()) ?>" title="<?php echo $this->__('Address Line 1') ?>" id="address_line_one" class="validate-street input-text required-entry" />
+          </div>
+        </li>
+        <li class="wide">
+          <div class="input-box">
+            <input type="text" name="address_line_two" value="<?php echo $this->escapeHtml($this->getAddressLineTwo()) ?>" title="<?php echo $this->__('Address Line 2') ?>" id="address_line_two" class="validate-street input-text" />
+          </div>
+        </li>
+        <li class="fields">
+          <div class="field">
+            <label for="listing_city" class="required"><em>*</em><?php echo $this->__('City') ?></label>
+            <div class="input-box">
+              <input type="text" name="listing_city" value="<?php echo $this->escapeHtml($this->getListingCity()) ?>" title="<?php echo $this->__('City') ?>" id="listing_city" class="input-text required-entry" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="listing_state" class="required"><em>*</em><?php echo $this->__('State/Province') ?></label>
+            <div class="input-box">
+              <input type="text" name="listing_state" value="<?php echo $this->escapeHtml($this->getListingState()) ?>"  title="<?php echo $this->__('State/Province') ?>" id="listing_state" class="input-text required-entry" />
+            </div>
+          </div>
+        </li>
+        <li class="fields">
+          <div class="field">
+            <label for="listing_zip_code" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></label>
+            <div class="input-box">
+              <input type="text" name="listing_zip_code" value="<?php echo $this->escapeHtml($this->getListingZipCode()) ?>" title="<?php echo $this->__('Zip/Postal Code') ?>" id="listing_zip_code" class="input-text validate-zip-international required-entry" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="listing_country" class="required"><em>*</em><?php echo $this->__('Country') ?></label>
+            <div class="input-box">
+              <?php if (count($this->getCountries()) > 0): ?>
+              <select name="listing_country" id="listing_country" class="validate-select required-entry">
+                <?php foreach($this->getCountries() as $_country): ?>
+                <?php $selected = ($_country['value'] == $this->getListingCountry()) ? 'selected="selected"' : null; ?>
+                <option value="<?php echo $_country['value'] ?>" <?php echo $selected; ?> > <?php echo $_country['label'] ?> </option>
+                <?php endforeach; ?>
+              </select>
+              <?php endif; ?>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="fieldset">
+      <h2 class="legend"><?php echo $this->__('Contact Information') ?></h2>
+      <ul class="form-list">
+        <li class="wide">
+          <div class="note-wrapper">
+            <p>Enter at least one of the contact fields below so that customers searching our directory can get in touch with you. In these fields, only enter information that you would like to be displayed to the general public.</p>
+          </div>
+        </li>
+        <li class="wide">
+          <div class="field">
+            <label for="listing_contact_name"><?php echo $this->__('Contact Person') ?></label>
+            <div class="input-box">
+              <input type="text" name="listing_contact_name" value="<?php echo $this->escapeHtml($this->getListingContactName()) ?>" title="<?php echo $this->__('Contact Person') ?>" id="listing_contact_name" class="input-text" />
+            </div>
+          </div>
+        </li>
+        <li class="fields">
+          <div class="field">
+            <label for="listing_phone"><?php echo $this->__('Company Telephone') ?></label>
+            <div class="input-box">
+              <input type="text" name="listing_phone" value="<?php echo $this->escapeHtml($this->getListingPhone()) ?>" title="<?php echo $this->__('Company Telephone') ?>" id="listing_phone" class="validate-phone input-text" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="listing_fax"><?php echo $this->__('Company Fax') ?></label>
+            <div class="input-box">
+              <input type="text" name="listing_fax" value="<?php echo $this->escapeHtml($this->getListingFax()) ?>"  title="<?php echo $this->__('Company Fax') ?>" id="listing_fax" class="validate-fax input-text" />
+            </div>
+          </div>
+        </li>
+        <li class="fields">
+          <div class="field">
+            <label for="listing_email"><?php echo $this->__('E-Mail') ?></label>
+            <div class="input-box">
+              <input type="text" name="listing_email" value="<?php echo $this->escapeHtml($this->getListingEmail()) ?>" title="<?php echo $this->__('E-Mail') ?>" id="listing_email" class="validate-email input-text" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="listing_website"><?php echo $this->__('Website') ?></label>
+            <div class="input-box">
+              <input type="text" name="listing_website" value="<?php echo $this->escapeHtml($this->getListingWebsite()) ?>"  title="<?php echo $this->__('Website') ?>" id="listing_website" class="validate-url input-text" />
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="fieldset">
+      <h2 class="legend"><?php echo $this->__('Tell The Public Who You Are & What You Do!') ?></h2>
+      <ul class="form-list">
+        <li class="wide">
+          <label for="listing_comments"><?php echo $this->__('Please Provide a Short Paragraph About Your Company for Display in the Main List') ?></label>
+          <div class="input-box">
+            <textarea type="text" name="listing_comments" title="<?php echo $this->__('Please Provide a Short Paragraph About Your Company for Display in the Main List') ?>" id="listing_comments" class="validate-no-html-tags validate-text" onkeyup="checkMaxLength(this, 255)"><?php echo $this->getListingComments(); ?></textarea>
+            <p class="note">Maximum 255 chars. Describe your company for the main list. No html permitted.</p>
+          </div>
+        </li>
+        <li class="wide">
+          <label for="content"><?php echo $this->__('Enter Textual Content to be Displayed On Your Profile Page') ?></label>
+          <div class="input-box">
+            <textarea type="text" name="content" title="<?php echo $this->__('Enter Textual Content to be Displayed On Your Profile Page') ?>" id="content" class="validate-text"><?php echo $this->getContent(); ?></textarea>
+            <p class="note">No character limit here. Be as descriptive and detailed as you would like. This content will be displayed on your dedicated profile page. Basic html tags are permitted.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="fieldset">
+      <h2 class="legend"><?php echo $this->__('Do you want to become a Featured Listing? It\'s Free!') ?></h2>
+      <ul class="form-list">
+        <li class="fields">
+          <div class="field">
+            <label for="is_featured"><?php echo $this->__('Feature My Company') ?></label>
+            <div class="input-box">
+              <select name="is_featured" id="is_featured" class="validate-select">
+                <option value="0">No (Choose YES, it's FREE!)</option>
+                <option value="1" selected="selected">Yes</option>
+              </select>
+            </div>
+          </div>
+        </li>
+        <li class="wide featured-field">
+          <div class="note-wrapper">
+            <h3>Why become a "Featured Listing"?</h3>
+            <ul>
+              <li>Increased exposure for your company.</li>
+              <li>Remain a constant presence in the "Featured Listings" box in the right column of each directory page.</li>
+              <li>Ability to display your logo for increased brand recognition.</li>
+              <li>Gain more "Likes" for your Facebook, Google+, and Twitter Pages</li>
+            </ul>
+            <h3>What does it cost?</h3>
+            <ul>
+              <li><strong>Nothing, it's FREE!</strong></li>
+              <li>The only requirement is that you place our link somewhere on your website.</li>
+            </ul>
+            <p>Once you have placed our link on your website, just place the url of the page where our link is located in the box labeled "Page Where We Can Verifiy a Link Back To Our Site". Once we verify that our link is placed on your site, we will activate your "Featured Listing". <strong>Simple and FREE!</strong></p>
+            <br />
+            <p>
+              <label>Here is our link to add to your site!</label>
+              <textarea readonly disabled class="backlink-code"><?php echo Mage::getBaseUrl(); ?></textarea>
+            </p>
+            <br />
+            <p>
+              <label>If you edit your own HTML, please use this link.</label>
+              <textarea readonly disabled class="backlink-code"><?php echo $this->__(htmlspecialchars("<a href=\"%s\" target=\"_blank\" title=\"".Mage::getStoreConfig('general/store_information/name')."\">".Mage::getStoreConfig('general/store_information/name')."</a>"),Mage::getBaseUrl()); ?>
+          </textarea>
+            </p>
+          </div>
+        </li>
+        <li class="wide featured-field">
+          <label for="backlink" class="required"><em>*</em><?php echo $this->__('Where On Your Website Did You Place The Link Back To Our Website?') ?></label>
+          <div class="input-box">
+            <input type="text" name="backlink" value="<?php echo $this->getBacklink(); ?>" title="<?php echo $this->__('Page Where We Can Verifiy a Link Back To Our Site') ?>" id="backlink" class="validate-url input-text required-entry" />
+            <p class="note">All we require to make your listing "Featured" is a link from your site back to ours. Please enter the page where we can see a link pointing back to our website. <strong>The link must be placed on your actual website, not a social networking page in order to qualify for Featured Listing status.</strong></p>
+          </div>
+        </li>
+        <li class="wide featured-field">
+          <label for="facebook_page"><?php echo $this->__('Company Facebook Page') ?></label>
+          <div class="input-box">
+            <input type="text" name="facebook_page" value="<?php echo $this->escapeHtml($this->getFacebookPage()) ?>" title="<?php echo $this->__('Company Facebook Page') ?>" id="facebook_page" class="validate-url input-text" />
+            <p class="note">Let more people "Like" you on Facebook!</p>
+          </div>
+        </li>
+        <li class="wide featured-field">
+          <label for="twitter_page"><?php echo $this->__('Company Twitter Page') ?></label>
+          <div class="input-box">
+            <input type="text" name="twitter_page" value="<?php echo $this->escapeHtml($this->getTwitterPage()) ?>" title="<?php echo $this->__('Company Twitter Page') ?>" id="twitter_page" class="validate-url input-text" />
+            <p class="note">Let more people "Follow" you on Twitter!</p>
+          </div>
+        </li>
+        <li class="wide featured-field">
+          <label for="google_plus_page"><?php echo $this->__('Company Google+ Page') ?></label>
+          <div class="input-box">
+            <input type="text" name="google_plus_page" value="<?php echo $this->escapeHtml($this->getGooglePlusPage()) ?>" title="<?php echo $this->__('Company Google+ Page') ?>" id="google_plus_page" class="validate-url input-text" />
+            <p class="note">Let more people "Circle" you on Google+!</p>
+          </div>
+        <li class="wide featured-field">
+          <label for="listing_image"><?php echo $this->__('Company Logo') ?></label>
+          <div class="input-box">
+            <?php if($this->getListingImage()): ?>
+            <input type="hidden" name="current_listing_image" value="<?php echo $this->getListingImage(); ?>" />
+            <img src="<?php echo $this->helper('businessdirectory')->getImageUrl($this->getListingImage()) ?>" height="22" width="22" />
+            <?php endif; ?>
+            <input id="listing_image" name="listing_image" title="Image" type="file" class="input-file">
+            <p class="note">For best results, upload an image size of 500x500 pixels.</p>
+          </div>
+        </li>
+        </li>
+      </ul>
+    </div>
+    <div class="fieldset">
+      <h2 class="legend">Acknowledgement</h2>
+      <ul class="form-list">
+        <li class="control">
+          <input type="checkbox" name="acknowledgement" id="acknowledgement" value="1" title="Terms & Conditions for Use of this Directory" class="checkbox required-entry">
+          <label for="acknowledgement" class="required"><em>*</em><?php echo $this->__('Terms & Conditions for Use of this Directory') ?></label>
+          <p style="font-size:11px;"><?php echo $this->__('By checking this box and submitting information, I agree and acknowledge that I am the legal and rightful owner of this business and duly authorized to submit such information. I also acknowledge that I may be held legally responsible for any fraudulent profile listings that I submit or claim. Furthermore, I acknowledge and agree to hold %s harmless for any claims or damage that result from my use of this directory and acknowledge that it is here only as a convenience to my business and the general public.',Mage::getStoreConfig('general/store_information/name')) ?></p>
+        </li>
+      </ul>
+    </div>
+    <div class="buttons-set">
+      <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+      <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>" class="back-link"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+      <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+    </div>
+  </form>
+  <script type="text/javascript">
+    //<![CDATA[
+        var dataForm = new VarienForm('profile-setup-form', true);
+		
+		var displayFeatured = {
+		  execute: function(select){
+			if(select.value == 1){
+			  $$("li.featured-field").each(Element.show);
+			  $$("li.featured-field input, li.featured-field select").each(function(e){
+				e.disabled=false
+			  });				
+			} else {
+			  $$("li.featured-field").each(Element.hide);
+			  $$("li.featured-field input, li.featured-field select").each(function(e){
+				e.disabled=true
+			  });			
+			}			  
+		  }
+		}
+		displayFeatured.execute($('is_featured'));
+		$('is_featured').observe('change', function(event) {
+		  displayFeatured.execute(this);	
+		});		
+		
+		function checkMaxLength(Object, MaxLen)
+		{
+			if (Object.value.length > MaxLen-1) {
+				Object.value = Object.value.substr(0, MaxLen);
+			}
+			return 1;
+		}			
+		
+    //]]>
+    </script> 
+</div>

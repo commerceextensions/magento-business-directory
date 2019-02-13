@@ -1,0 +1,10 @@
+<?php $_directory = $this->getDirectory(); ?>
+<?php if($_directory->getCanSubmitNewListing()): ?>
+<div class="block block-newlisting <?php echo $this->getElementClass(); ?>">
+  <div class="block-title"> <strong><span><?php echo $this->__('List Your Company Here!') ?></span></strong> </div>
+  <div class="block-content">
+    <p>Add your company to our directory for FREE! Take advantage of this <strong>completely free promotion</strong> to gain new leads for your business, no strings attached and it only takes a few minutes.</p>
+    <button type="button" title="Claim This Profile" class="button btn-newlisting" onclick="setLocation('<?php echo $this->getUrl('*/profile/new',array('directory_id'=>$_directory->getDirectoryId())); ?>'); return false;"><span><span><?php echo $this->__('Add My Company FREE!') ?></span></span></button>
+  </div>
+</div>
+<?php endif; ?>

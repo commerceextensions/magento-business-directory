@@ -1,0 +1,468 @@
+<?xml version="1.0"?>
+<config>
+  <sections>
+    <businessdirectory translate="label" module="cecore">
+      <label>Business Directory</label>
+      <tab>commerceextensions</tab>
+      <frontend_type>text</frontend_type>
+      <sort_order>200</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+      <groups>
+        <geocode translate="label">
+          <label>Search API (for search by radius function)</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>1</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <comment><![CDATA[<div class="ce_block_notice">
+<h3>What are the APIs used for?</h3>
+<p>The APIs are used to make the search function work properly for your business directory(s). We have designed a search function for the business directory extension that will search through your listings in proximity to the location that you or your user type into the search form. In order for that search functionality to work properly, each address in your directory needs to have latitude and longitude coordinates to search by.</p>
+<p>In order to save you time and money in doing what might be a frustrating task, we have designed a function to convert your directory addresses into Latitude and Longitude coordinates. This is known as <strong>Geocoding.</strong> Both Google and Bing maps offer a free geocoding service. However, their free services may have limits as to the number of geocoding requests that can be made per day or per another time period. To make this easier, we have added access to both APIs so if you hit a limit with one, the extension will begin geocoding with the other API.</p>
+<p><strong>The good news is that each address only needs to be geocoded once</strong> as the coordinates are stored in the database. </p>
+<h3>What if I have a huge number of listings/addresses?</h3>
+<p>Don't worry, if you hit your geocoding limits while either uploading a CSV file or by clicking the "Geocode" button for your directory, it is likely that you will be able to geocode again within 24 hours or less, when the limit is lifted. If you have to run additional geocode sessions to complete your lists, our extension is smart enough to only run the geocode process on those addresses that do not yet have Latitude and Longitude coordinates assigned and skip over the ones that already do. </p>
+</div>]]></comment>
+          <fields>
+            <bingmaps_api_key>
+              <label>Bing Maps API Key</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>100</sort_order>
+              <comment><![CDATA[To get a free Bing Maps API Key click <a href="http://www.microsoft.com/maps/create-a-bing-maps-key.aspx" target="_blank">here</a>. Select the "Basic Key" and not the "Trial Key".]]></comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+            </bingmaps_api_key>
+            <googlemaps_api_key>
+              <label>Google Maps API Key</label>
+              <frontend_type>label</frontend_type>
+              <frontend_model>businessdirectory/adminhtml_system_config_form_field_googlenote</frontend_model>
+              <sort_order>200</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+            </googlemaps_api_key>
+            <ipinfodb_api_key>
+              <label>IPInfoDB API Key</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>300</sort_order>
+              <comment><![CDATA[To get a free IPInfoDB API Key click <a href="http://ipinfodb.com/register.php" target="_blank">here</a>. This free API is used to get the current users location using their IP address. Using this API allows the user to be presented with the listings closest to them when they initially enter the directory.]]></comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+            </ipinfodb_api_key>
+          </fields>
+        </geocode>
+        <frontend translate="label">
+          <label>Frontend Options</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>2</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <show_breadcrumbs>
+              <label>Show Breadcrumbs</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>100</sort_order>
+              <validate>required-entry validate-select</validate>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </show_breadcrumbs>
+            <url_suffix>
+              <label>Directory URL Suffix</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>200</sort_order>
+              <validate>required-entry</validate>
+              <comment>Examples .html, .htm, /, etc.</comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </url_suffix>
+            <list_image_width>
+              <label>List Image Width</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>300</sort_order>
+              <validate>required-entry validate-greater-than-zero validate-digits</validate>
+              <comment>Enter width in pixels.</comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </list_image_width>
+            <list_image_height>
+              <label>List Image Height</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>400</sort_order>
+              <validate>required-entry validate-greater-than-zero validate-digits</validate>
+              <comment>Enter height in pixels.</comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </list_image_height>
+            <profile_image_width>
+              <label>Profile Image Width</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>500</sort_order>
+              <validate>required-entry validate-greater-than-zero validate-digits</validate>
+              <comment>Enter width in pixels.</comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </profile_image_width>
+            <profile_image_height>
+              <label>Profile Image Height</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>600</sort_order>
+              <validate>required-entry validate-greater-than-zero validate-digits</validate>
+              <comment>Enter height in pixels.</comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </profile_image_height>
+            <disclaimer_text>
+              <label>Disclaimer Content</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>700</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </disclaimer_text>
+          </fields>
+        </frontend>
+        <pending translate="label">
+          <label>Pending Listing Options</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>3</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <geocode_on_approve>
+              <label>Geocode Upon Approval?</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>100</sort_order>
+              <validate>required-entry validate-select</validate>
+              <comment><![CDATA[If set to yes, when approving a pending listing, the Latitude & Longitude coordinates will be automatically retrieved.]]></comment>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+            </geocode_on_approve>
+          </fields>
+        </pending>
+        <emails translate="label" module="businessdirectory">
+          <label>Business Directory Activity Emails</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>250</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <admin_email translate="label">
+              <label>Send Admin Emails To</label>
+              <frontend_type>text</frontend_type>
+              <validate>validate-email required-entry</validate>
+              <sort_order>50</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment><![CDATA[What e-mail address do you want to be copied to?]]></comment>
+            </admin_email>
+
+            <enable_profile_new_submit_email translate="label">
+              <label>New Listing Submission - E-Mail Customer</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>100</sort_order>
+              <validate>required-entry validate-select</validate>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment><![CDATA[Send confirmation e-mail to customer when they submit a new listing to the directory?]]></comment>
+            </enable_profile_new_submit_email>
+            <cc_admin_profile_new_submit translate="label">
+              <label>New Listing Submission - Copy Admin On E-Mail</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>200</sort_order>
+              <validate>required-entry validate-select</validate>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_new_submit_email>1</enable_profile_new_submit_email>
+              </depends>
+            </cc_admin_profile_new_submit>
+            <profile_new_submit_template translate="label">
+              <label>New Listing Submission - Email Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <validate>required-entry validate-select</validate>
+              <sort_order>300</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_new_submit_email>1</enable_profile_new_submit_email>
+              </depends>
+            </profile_new_submit_template>
+
+            <enable_profile_new_approve_email translate="label">
+              <label>New Listing Approval - E-Mail Customer</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>400</sort_order>
+              <validate>required-entry validate-select</validate>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment><![CDATA[Send e-mail to customer when you approve their new listing?]]></comment>
+            </enable_profile_new_approve_email>
+            <cc_admin_profile_new_approve translate="label">
+              <label>New Listing Approval - Copy Admin On E-Mail</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>500</sort_order>
+              <validate>required-entry validate-select</validate>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_new_approve_email>1</enable_profile_new_approve_email>
+              </depends>
+            </cc_admin_profile_new_approve>
+            <profile_new_standard_approve_template translate="label">
+              <label>New Listing Approval - Standard Listing Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <validate>required-entry validate-select</validate>
+              <sort_order>600</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_new_approve_email>1</enable_profile_new_approve_email>
+              </depends>
+              <comment><![CDATA[E-Mail template when you approve a customer's new Standard Listing.]]></comment>
+            </profile_new_standard_approve_template>
+            <profile_new_featured_approve_template translate="label">
+              <label>New Listing Approval - Featured Listing Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <validate>required-entry validate-select</validate>
+              <sort_order>700</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_new_approve_email>1</enable_profile_new_approve_email>
+              </depends>
+              <comment><![CDATA[E-Mail template when you approve a customer's new Featured Listing.]]></comment>
+            </profile_new_featured_approve_template>
+
+            <enable_profile_claim_submit_email translate="label">
+              <label>Claimed Listing Submission - E-Mail Customer</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>800</sort_order>
+              <validate>required-entry validate-select</validate>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </enable_profile_claim_submit_email>
+            <comment><![CDATA[Send confirmation e-mail to customer when they claim an existing listing?]]></comment>
+            <cc_admin_profile_claim_submit translate="label">
+              <label>Claimed Listing Submission - Copy Admin On E-Mail</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>900</sort_order>
+              <validate>required-entry validate-select</validate>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_claim_submit_email>1</enable_profile_claim_submit_email>
+              </depends>
+            </cc_admin_profile_claim_submit>
+            <profile_claim_submit_template translate="label">
+              <label>Claimed Listing Submission - E-Mail Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <validate>required-entry validate-select</validate>
+              <sort_order>1000</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_claim_submit_email>1</enable_profile_claim_submit_email>
+              </depends>
+            </profile_claim_submit_template>
+
+            <enable_profile_claim_approve_email translate="label">
+              <label>Claimed Listing Approval - E-Mail Customer</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>1100</sort_order>
+              <validate>required-entry validate-select</validate>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment><![CDATA[Send e-mail to customer when you approve their claimed listing?]]></comment>
+            </enable_profile_claim_approve_email>
+            <cc_admin_profile_claim_approve translate="label">
+              <label>Claimed Listing Approval - Copy Admin On E-Mail</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>1200</sort_order>
+              <validate>required-entry validate-select</validate>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_claim_approve_email>1</enable_profile_claim_approve_email>
+              </depends>
+            </cc_admin_profile_claim_approve>
+            <profile_claim_standard_approve_template translate="label">
+              <label>Claimed Listing Approval - Standard Listing Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <validate>required-entry validate-select</validate>
+              <sort_order>1300</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_claim_approve_email>1</enable_profile_claim_approve_email>
+              </depends>
+              <comment><![CDATA[E-Mail template when you approve a customer's claimed Standard Listing.]]></comment>
+            </profile_claim_standard_approve_template>
+            <profile_claim_featured_approve_template translate="label">
+              <label>Claimed Listing Approval - Featured Listing Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <validate>required-entry validate-select</validate>
+              <sort_order>1400</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_claim_approve_email>1</enable_profile_claim_approve_email>
+              </depends>
+              <comment><![CDATA[E-Mail template when you approve a customer's claimed Featured Listing.]]></comment>
+            </profile_claim_featured_approve_template>
+
+            <enable_profile_update_submit_email translate="label">
+              <label>Update Listing Submission - E-Mail Customer</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>1500</sort_order>
+              <validate>required-entry validate-select</validate>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment><![CDATA[Send confirmation e-mail to customer when they update a listing they already own?]]></comment>
+            </enable_profile_update_submit_email>
+            <cc_admin_profile_update_submit translate="label">
+              <label>Update Listing Submission - Copy Admin On E-Mail</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>1600</sort_order>
+              <validate>required-entry validate-select</validate>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_update_submit_email>1</enable_profile_update_submit_email>
+              </depends>
+            </cc_admin_profile_update_submit>
+            <profile_update_submit_template translate="label">
+              <label>Update Listing Submission - Email Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <validate>required-entry validate-select</validate>
+              <sort_order>1700</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_update_submit_email>1</enable_profile_update_submit_email>
+              </depends>
+            </profile_update_submit_template>
+
+            <enable_profile_update_approve_email translate="label">
+              <label>Updated Listing Approval - E-Mail Customer</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>1800</sort_order>
+              <validate>required-entry validate-select</validate>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment><![CDATA[Send e-mail to customer when you approve their updated listing?]]></comment>
+            </enable_profile_update_approve_email>
+            <cc_admin_profile_update_approve translate="label">
+              <label>Updated Listing Approval - Copy Admin On E-Mail</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>1900</sort_order>
+              <validate>required-entry validate-select</validate>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_update_approve_email>1</enable_profile_update_approve_email>
+              </depends>
+            </cc_admin_profile_update_approve>
+            <profile_update_standard_approve_template translate="label">
+              <label>Updated Listing Approval - Standard Listing Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <validate>required-entry validate-select</validate>
+              <sort_order>2000</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_update_approve_email>1</enable_profile_update_approve_email>
+              </depends>
+              <comment><![CDATA[E-Mail template when you approve a customer's updated Standard Listing.]]></comment>
+            </profile_update_standard_approve_template>
+            <profile_update_featured_approve_template translate="label">
+              <label>Updated Listing Approval - Featured Listing Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <validate>required-entry validate-select</validate>
+              <sort_order>2100</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_update_approve_email>1</enable_profile_update_approve_email>
+              </depends>
+              <comment><![CDATA[E-Mail template when you approve a customer's updated Featured Listing.]]></comment>
+            </profile_update_featured_approve_template>
+            <profile_update_upgrade_approve_template translate="label">
+              <label>Updated Listing Approval - Upgrade Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <validate>required-entry validate-select</validate>
+              <sort_order>2200</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable_profile_update_approve_email>1</enable_profile_update_approve_email>
+              </depends>
+              <comment><![CDATA[E-Mail template when you approve a customer's updated listing, if they upgraded from Standard Listing to Featured Listing.]]></comment>
+            </profile_update_upgrade_approve_template>
+
+          </fields>
+        </emails>
+      </groups>
+    </businessdirectory>
+  </sections>
+</config>
